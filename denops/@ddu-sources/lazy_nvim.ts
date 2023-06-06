@@ -22,22 +22,11 @@ export class Source extends BaseSource<Params, ActionData> {
   ): ReadableStream<Item<ActionData>[]> {
     return new ReadableStream({
       async start(controller) {
-        const plugins = await args.denops.call(
-          "ddu#sources#lazy_nvim#plugins",
-        ) as LazyPlugin[];
-        controller.enqueue(plugins.map((plugin) => {
-          return {
-            word: plugin.name,
-            action: {
-              name: plugin.name,
-              path: plugin.path,
-              isDirectory: true,
-              url: plugin.url,
-            },
-            treePath: plugin.path,
-            isTree: true,
-          };
-        }));
+        controller.enqueue(
+          await args.denops.call(
+            "ddu#sources#lazy_nvim#plugins_action_data",
+          ) as Item<ActionData>[],
+        );
       },
     });
   }

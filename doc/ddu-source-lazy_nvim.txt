@@ -1,0 +1,59 @@
+*ddu-source-lazy_nvim.txt*		lazy.nvim plugins source for ddu.vim
+
+Author: kyoh86 <me@kyoh86.dev>
+License: MIT License
+URL: https://github.com/kyoh86/ddu-source-lazy_nvim
+
+
+==============================================================================
+CONTENTS				*ddu-source-lazy_nvim-contents*
+
+Introduction				|ddu-source-lazy_nvim-introdution|
+Install					|ddu-source-lazy_nvim-install|
+Examples				|ddu-source-lazy_nvim-examples|
+Params					|ddu-source-lazy_nvim-params|
+Actions					|ddu-source-lazy_nvim-actions|
+About					|ddu-source-lazy_nvim-about|
+
+
+==============================================================================
+INTRODUCTION				*ddu-source-lazy_nvim-introdution*
+
+ddu.vim source collects plugins managed in lazy.nvim.
+
+
+==============================================================================
+INSTALL						*ddu-source-lazy_nvim-install*
+
+It depends on "|lazy.nvim|", "|ddu|.vim", "|denops.vim|" and "|ddu-kind-file|".
+
+https://github.com/folke/lazy.nvim
+https://github.com/Shougo/ddu.vim
+https://github.com/vim-denops/denops.vim
+https://github.com/Shougo/ddu-kind-file
+
+
+==============================================================================
+EXAMPLES					*ddu-source-lazy_nvim-examples*
+
+>
+	" Use lazy.nvim plugins source.
+	call ddu#start({
+	    \ 'sources': [{ 'name': 'lazy_nvim' }],
+	    \ 'kindOptions': { 'file': { 'defaultAction': 'cd' } }
+	    \ })
+<
+
+==============================================================================
+PARAMS						*ddu-source-lazy_nvim-params*
+
+
+==============================================================================
+ACTIONS						*ddu-source-lazy_nvim-actions*
+
+lazy_nvim_project uses |ddu-kind-file| actions.
+You can see their actions in |ddu-kind-file-actions|.
+
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:noet:fen:

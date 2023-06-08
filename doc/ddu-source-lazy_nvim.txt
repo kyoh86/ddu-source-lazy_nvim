@@ -26,11 +26,13 @@ ddu.vim source collects plugins managed in lazy.nvim.
 INSTALL						*ddu-source-lazy_nvim-install*
 
 It depends on "|lazy.nvim|", "|ddu|.vim", "|denops.vim|" and "|ddu-kind-file|".
+If you are using GitHub CLI (gh), this source can fork the plugin in the GitHub.
 
 https://github.com/folke/lazy.nvim
 https://github.com/Shougo/ddu.vim
 https://github.com/vim-denops/denops.vim
 https://github.com/Shougo/ddu-kind-file
+https://github.com/cli/cli
 
 
 ==============================================================================
@@ -51,9 +53,20 @@ PARAMS						*ddu-source-lazy_nvim-params*
 ==============================================================================
 ACTIONS						*ddu-source-lazy_nvim-actions*
 
-lazy_nvim_project uses |ddu-kind-file| actions.
+
+					*ddu-source-lazy_nvim-actions-grep*
+grep
+
+	Grep the plugin configuration from your |standard-path|.
+
+					*ddu-source-lazy_nvim-actions-fork*
+fork
+	(Depends on GitHub CLI (gh))
+	Fork the repository into your "config.dev" directory of the lazy.nvim.
+
+And lazy_nvim_project uses |ddu-kind-file| actions.
 You can see their actions in |ddu-kind-file-actions|.
 
 
 ==============================================================================
-vim:tw=78:ts=8:ft=help:norl:noet:fen:
+vim:tw=78:ts=8:sw=8:ft=help:norl:noet:fen:

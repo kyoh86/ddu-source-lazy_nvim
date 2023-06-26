@@ -1,5 +1,5 @@
 import type { GatherArguments } from "https://deno.land/x/ddu_vim@v3.2.7/base/source.ts";
-import type { ActionData as FileActionData } from "https://deno.land/x/ddu_kind_file@v0.5.1/file.ts";
+import type { ActionData as FileActionData } from "https://deno.land/x/ddu_kind_file@v0.5.2/file.ts";
 
 import {
   ActionFlags,

@@ -1,15 +1,15 @@
-import type { GatherArguments } from "https://deno.land/x/ddu_vim@v3.4.0/base/source.ts";
-import type { ActionData as FileActionData } from "https://deno.land/x/ddu_kind_file@v0.5.2/file.ts";
+import type { GatherArguments } from "https://deno.land/x/ddu_vim@v3.4.2/base/source.ts";
+import type { ActionData as FileActionData } from "https://deno.land/x/ddu_kind_file@v0.5.3/file.ts";
 
 import {
   ActionFlags,
   Actions,
   BaseSource,
   Item,
-} from "https://deno.land/x/ddu_vim@v3.4.0/types.ts";
-import { TextLineStream } from "https://deno.land/std@0.193.0/streams/text_line_stream.ts";
-import { Denops, fn } from "https://deno.land/x/ddu_vim@v3.4.0/deps.ts";
-import { join } from "https://deno.land/std@0.193.0/path/mod.ts";
+} from "https://deno.land/x/ddu_vim@v3.4.2/types.ts";
+import { TextLineStream } from "https://deno.land/std@0.194.0/streams/text_line_stream.ts";
+import { Denops, fn } from "https://deno.land/x/ddu_vim@v3.4.2/deps.ts";
+import { join } from "https://deno.land/std@0.194.0/path/mod.ts";
 
 type ActionData = FileActionData & LazyPlugin;
 

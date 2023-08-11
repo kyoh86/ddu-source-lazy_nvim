@@ -1,4 +1,5 @@
-*ddu-source-lazy_nvim.txt*		lazy.nvim plugins source for ddu.vim
+                                                    *ddu-source-lazy_nvim.txt*
+lazy.nvim plugins source for ddu.vim
 
 Author: kyoh86 <me@kyoh86.dev>
 License: MIT License
@@ -6,7 +7,8 @@ URL: https://github.com/kyoh86/ddu-source-lazy_nvim
 
 
 ==============================================================================
-CONTENTS				*ddu-source-lazy_nvim-contents*
+                                               *ddu-source-lazy_nvim-contents*
+Contents ~
 
 Introduction				|ddu-source-lazy_nvim-introdution|
 Install					|ddu-source-lazy_nvim-install|
@@ -17,13 +19,19 @@ About					|ddu-source-lazy_nvim-about|
 
 
 ==============================================================================
-INTRODUCTION				*ddu-source-lazy_nvim-introdution*
+                                            *ddu-source-lazy_nvim-introdution*
+Introduction ~
 
 ddu.vim source collects plugins managed in lazy.nvim.
 
+This source generates items for a kind "file".
+A handler for the kind "git_commit" is included in this plugin; see 
+|ddu-kind-git_commit|.
+
 
 ==============================================================================
-INSTALL						*ddu-source-lazy_nvim-install*
+                                                *ddu-source-lazy_nvim-install*
+Install ~
 
 It depends on "|lazy.nvim|", "|ddu|.vim", "|denops.vim|" and "|ddu-kind-file|".
 If you are using GitHub CLI (gh), this source can fork the plugin in the GitHub.
@@ -36,7 +44,8 @@ https://github.com/cli/cli
 
 
 ==============================================================================
-EXAMPLES					*ddu-source-lazy_nvim-examples*
+                                               *ddu-source-lazy_nvim-examples*
+Examples ~
 
 >
 	" Use lazy.nvim plugins source.
@@ -47,11 +56,13 @@ EXAMPLES					*ddu-source-lazy_nvim-examples*
 <
 
 ==============================================================================
-PARAMS						*ddu-source-lazy_nvim-params*
+                                                 *ddu-source-lazy_nvim-params*
+Params ~
 
 
 ==============================================================================
-ACTIONS						*ddu-source-lazy_nvim-actions*
+                                                *ddu-source-lazy_nvim-actions*
+Actions ~
 
 
 					*ddu-source-lazy_nvim-actions-grep*
@@ -64,7 +75,8 @@ fork
 	(Depends on GitHub CLI (gh))
 	Fork the repository into your "config.dev" directory of the lazy.nvim.
 
-And lazy_nvim_project uses |ddu-kind-file| actions.
+
+lazy_nvim uses |ddu-kind-file| actions.
 You can see their actions in |ddu-kind-file-actions|.
 
 

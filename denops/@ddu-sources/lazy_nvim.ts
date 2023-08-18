@@ -1,19 +1,22 @@
 import type { GatherArguments } from "https://deno.land/x/ddu_vim@v3.4.4/base/source.ts";
 import type { ActionData as FileActionData } from "https://deno.land/x/ddu_kind_file@v0.5.3/file.ts";
+import type {
+  Actions,
+  DduItem,
+  Item,
+} from "https://deno.land/x/ddu_vim@v3.4.4/types.ts";
 
 import {
   ActionFlags,
-  Actions,
   BaseSource,
-  Item,
 } from "https://deno.land/x/ddu_vim@v3.4.4/types.ts";
-import { TextLineStream } from "https://deno.land/std@0.196.0/streams/text_line_stream.ts";
 import { Denops, fn } from "https://deno.land/x/ddu_vim@v3.4.4/deps.ts";
 import { join } from "https://deno.land/std@0.196.0/path/mod.ts";
+import { echoerr, pipe } from "../ddu-source-lazy_nvim/message.ts";
 
 type ActionData = FileActionData & LazyPlugin;
 
-type Params = Record<never, never>;
+type Params = Record<string, never>;
 
 type LazyPlugin = {
   name: string;
@@ -23,18 +26,52 @@ type LazyPlugin = {
   lazy?: boolean;
 };
 
-async function err(denops: Denops, msg: string) {
-  await denops.call("ddu#util#print_error", msg, "ddu-source-lazy_nvim");
+async function ensureOnlyOneItem(denops: Denops, items: DduItem[]) {
+  if (items.length != 1) {
+    await denops.call(
+      "ddu#util#print_error",
+      "invalid action calling: it can accept only one item",
+      "ddu-source-lazy_nvim",
+    );
+    return;
+  }
+  return items[0];
 }
 
-export class ErrorStream extends WritableStream<string> {
-  constructor(denops: Denops) {
-    super({
-      write: async (chunk, _controller) => {
-        await err(denops, chunk);
-      },
-    });
+async function clone(denops: Denops, items: DduItem[], fork: boolean) {
+  for await (const item of items) {
+    const act = item.action as ActionData;
+
+    if (!act.url) {
+      await echoerr(denops, "invalid item: having no URL");
+      return ActionFlags.RestoreCursor;
+    }
+
+    // get the path of lazy.nvim dev directory
+    const devdir = join(
+      await fn.call(denops, "ddu#sources#lazy_nvim#devdir", []) as string,
+      act.name,
+    );
+
+    try {
+      // call gh repo fork
+      await pipe(denops, "gh", { args: ["repo", "fork", act.url] });
+    } catch {
+      echoerr(denops, "failed to call gh fork");
+    }
+
+    if (fork) {
+      try {
+        // call gh repo clone
+        await pipe(denops, "gh", {
+          args: ["repo", "clone", act.url, "--", devdir],
+        });
+      } catch {
+        echoerr(denops, "failed to call gh clone");
+      }
+    }
   }
+  return ActionFlags.None;
 }
 
 export class Source extends BaseSource<Params, ActionData> {
@@ -58,63 +95,28 @@ export class Source extends BaseSource<Params, ActionData> {
     });
   }
 
-  #call_gh = async (denops: Denops, args: string[]) => {
-    const { status, stderr } = new Deno.Command("gh", { args, stderr: "piped" })
-      .spawn();
-    const stat = await status;
-    if (!stat.success) {
-      await stderr
-        .pipeThrough(new TextDecoderStream())
-        .pipeThrough(new TextLineStream())
-        .pipeTo(new ErrorStream(denops));
-    }
-  };
-
   override actions = {
     grep_config: async ({ denops, items }) => {
-      if (items.length != 1) {
-        await err(denops, "Multiple selected items are not supported");
-        return ActionFlags.RestoreCursor;
+      const item = await ensureOnlyOneItem(denops, items);
+      if (!item) {
+        return ActionFlags.Persist;
       }
-      const spec = (items[0].action as ActionData).spec;
+      const spec = (item.action as ActionData).spec;
       const config_path = await fn.call(denops, "stdpath", ["config"]);
       if (!spec) {
-        await err(denops, "Selected item does not have a spe");
+        await echoerr(denops, "Selected item does not have a spe");
         return ActionFlags.RestoreCursor;
       }
       await fn.execute(denops, `grep ${spec} ${config_path}`);
       return ActionFlags.None;
     },
 
+    clone: async ({ denops, items }) => {
+      return await clone(denops, items, false);
+    },
+
     fork: async ({ denops, items }) => {
-      if (items.length != 1) {
-        await err(denops, "Multiple selected items are not supported");
-        return ActionFlags.RestoreCursor;
-      }
-      const selection = items[0];
-      const act = selection.action as ActionData;
-
-      if (!act.url) {
-        await err(denops, "invalid item: having no URL");
-        return ActionFlags.RestoreCursor;
-      }
-
-      // get the path of lazy.nvim dev directory
-      const devdir = join(
-        await fn.call(denops, "ddu#sources#lazy_nvim#devdir", []) as string,
-        act.name,
-      );
-
-      try {
-        // call gh repo fork
-        await this.#call_gh(denops, ["repo", "fork", act.url]);
-
-        // call gh repo clone
-        await this.#call_gh(denops, ["repo", "clone", act.url, "--", devdir]);
-      } catch {
-        err(denops, "failed to call gh");
-      }
-      return Promise.resolve(ActionFlags.None);
+      return await clone(denops, items, true);
     },
   } as Actions<Params>;
 

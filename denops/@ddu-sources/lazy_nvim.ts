@@ -11,7 +11,7 @@ import {
   BaseSource,
 } from "https://deno.land/x/ddu_vim@v3.5.1/types.ts";
 import { Denops, fn } from "https://deno.land/x/ddu_vim@v3.5.1/deps.ts";
-import { join } from "https://deno.land/std@0.198.0/path/mod.ts";
+import { join } from "https://deno.land/std@0.200.0/path/mod.ts";
 import { echoerr, pipe } from "../ddu-source-lazy_nvim/message.ts";
 
 type ActionData = FileActionData & LazyPlugin;

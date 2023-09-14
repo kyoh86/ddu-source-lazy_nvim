@@ -1,5 +1,5 @@
 import type { GatherArguments } from "https://deno.land/x/ddu_vim@v3.6.0/base/source.ts";
-import type { ActionData as FileActionData } from "https://deno.land/x/ddu_kind_file@v0.5.3/file.ts";
+import type { ActionData as FileActionData } from "https://deno.land/x/ddu_kind_file@v0.7.0/file.ts";
 import type {
   Actions,
   DduItem,
@@ -11,7 +11,7 @@ import {
   BaseSource,
 } from "https://deno.land/x/ddu_vim@v3.6.0/types.ts";
 import { Denops, fn } from "https://deno.land/x/ddu_vim@v3.6.0/deps.ts";
-import { join } from "https://deno.land/std@0.200.0/path/mod.ts";
+import { join } from "https://deno.land/std@0.201.0/path/mod.ts";
 import { echoerr, pipe } from "../ddu-source-lazy_nvim/message.ts";
 
 type ActionData = FileActionData & LazyPlugin;

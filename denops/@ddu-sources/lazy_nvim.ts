@@ -75,7 +75,7 @@ async function clone(denops: Denops, items: DduItem[], fork: boolean) {
 }
 
 export class Source extends BaseSource<Params, ActionData> {
-  override kind = "file";
+  override kind = "lazy_nvim_plugin";
 
   override gather(
     args: GatherArguments<Params>,

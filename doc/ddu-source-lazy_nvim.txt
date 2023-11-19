@@ -13,8 +13,9 @@ Contents ~
 Introduction				|ddu-source-lazy_nvim-introdution|
 Install					|ddu-source-lazy_nvim-install|
 Examples				|ddu-source-lazy_nvim-examples|
-Params					|ddu-source-lazy_nvim-params|
-Actions					|ddu-source-lazy_nvim-actions|
+Source Params				|ddu-source-lazy_nvim-params|
+Actions					|ddu-kind-lazy_nvim_plugin-actions|
+Kind Params				|ddu-kind-lazy_nvim_plugin-params|
 About					|ddu-source-lazy_nvim-about|
 
 
@@ -24,7 +25,7 @@ Introduction ~
 
 ddu.vim source collects plugins managed in lazy.nvim.
 
-This source generates items for a kind "file".
+This source generates items for a kind "lazy_nvim_plugin".
 A handler for the kind "git_commit" is included in this plugin; see 
 |ddu-kind-git_commit|.
 
@@ -33,13 +34,12 @@ A handler for the kind "git_commit" is included in this plugin; see
                                                 *ddu-source-lazy_nvim-install*
 Install ~
 
-It depends on "|lazy.nvim|", "|ddu|.vim", "|denops.vim|" and "|ddu-kind-file|".
+It depends on "|lazy.nvim|", "|ddu|.vim", "|denops.vim|".
 If you are using GitHub CLI (gh), this source can fork the plugin in the GitHub.
 
 https://github.com/folke/lazy.nvim
 https://github.com/Shougo/ddu.vim
 https://github.com/vim-denops/denops.vim
-https://github.com/Shougo/ddu-kind-file
 https://github.com/cli/cli
 
 
@@ -51,33 +51,55 @@ Examples ~
 	" Use lazy.nvim plugins source.
 	call ddu#start({
 	    \ 'sources': [{ 'name': 'lazy_nvim' }],
-	    \ 'kindOptions': { 'file': { 'defaultAction': 'cd' } }
+	    \ 'kindOptions': { 'lazy_nvim_plugin': { 'defaultAction': 'cd' } }
 	    \ })
 <
 
 ==============================================================================
                                                  *ddu-source-lazy_nvim-params*
-Params ~
+Source Params ~
 
 
 ==============================================================================
-                                                *ddu-source-lazy_nvim-actions*
+                                           *ddu-kind-lazy_nvim_plugin-actions*
 Actions ~
 
 
-					*ddu-source-lazy_nvim-actions-grep*
+                                      *ddu-kind-lazy_nvim_plugin-actions-grep*
 grep
 
 	Grep the plugin configuration from your |standard-path|.
 
-					*ddu-source-lazy_nvim-actions-fork*
+                                      *ddu-kind-lazy_nvim_plugin-actions-fork*
 fork
 	(Depends on GitHub CLI (gh))
 	Fork the repository into your "config.dev" directory of the lazy.nvim.
 
+                                     *ddu-kind-lazy_nvim_plugin-action-browse*
+browse
+	Browse the URLs using external browser.
+	|ddu-kind-url-param-externalOpener| is used to detect the method to
+	open external browser.
 
-lazy_nvim uses |ddu-kind-file| actions.
+And also lazy_nvim_plugin uses |ddu-kind-file| actions.
 You can see their actions in |ddu-kind-file-actions|.
+
+
+==============================================================================
+                                            *ddu-kind-lazy_nvim_plugin-params*
+Kind Params ~
+
+                              *ddu-kind-lazy_nvim_plugin-param-externalOpener*
+externalOpener	|String| (default: "systemopen")
+	The method to use external browser in "browse" action.
+	(see: |ddu-kind-lazy_nvim_plugin-action-browse|)
+	Following values are available:
+
+	value		description~
+	"openbrowser"	Use |openbrowser| plugin.
+	"external"	Use |vim-external| plugin.
+	"systemopen"	Use https://deno.land/x/systemopen@v0.2.0
+	"uiopen"	Use |vim.ui.open()| (Neovim only)
 
 
 ==============================================================================

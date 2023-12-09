@@ -12,7 +12,8 @@ import {
 } from "https://deno.land/x/ddu_vim@v3.8.1/types.ts";
 import { Denops, fn } from "https://deno.land/x/ddu_vim@v3.8.1/deps.ts";
 import { join } from "https://deno.land/std@0.208.0/path/mod.ts";
-import { echoerr, pipe } from "../ddu-source-lazy_nvim/message.ts";
+import { echomsg } from "https://denopkg.com/kyoh86/denops_util@v0.0.1/echomsg.ts";
+import { pipe } from "https://denopkg.com/kyoh86/denops_util@v0.0.1/pipe.ts";
 
 type ActionData = FileActionData & LazyPlugin;
 
@@ -43,7 +44,7 @@ async function clone(denops: Denops, items: DduItem[], fork: boolean) {
     const act = item.action as ActionData;
 
     if (!act.url) {
-      await echoerr(denops, "invalid item: having no URL");
+      await echomsg(denops, "invalid item: having no URL", "ErrorMsg");
       return ActionFlags.RestoreCursor;
     }
 
@@ -57,7 +58,7 @@ async function clone(denops: Denops, items: DduItem[], fork: boolean) {
       // call gh repo fork
       await pipe(denops, "gh", { args: ["repo", "fork", act.url] });
     } catch {
-      echoerr(denops, "failed to call gh fork");
+      echomsg(denops, "failed to call gh fork", "ErrorMsg");
     }
 
     if (fork) {
@@ -67,7 +68,7 @@ async function clone(denops: Denops, items: DduItem[], fork: boolean) {
           args: ["repo", "clone", act.url, "--", devdir],
         });
       } catch {
-        echoerr(denops, "failed to call gh clone");
+        echomsg(denops, "failed to call gh clone", "ErrorMsg");
       }
     }
   }
@@ -104,7 +105,7 @@ export class Source extends BaseSource<Params, ActionData> {
       const spec = (item.action as ActionData).spec;
       const config_path = await fn.call(denops, "stdpath", ["config"]);
       if (!spec) {
-        await echoerr(denops, "Selected item does not have a spe");
+        await echomsg(denops, "Selected item does not have a spe", "ErrorMsg");
         return ActionFlags.RestoreCursor;
       }
       await fn.execute(denops, `grep ${spec} ${config_path}`);

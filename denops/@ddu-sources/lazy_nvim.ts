@@ -1,17 +1,17 @@
-import type { GatherArguments } from "https://deno.land/x/ddu_vim@v3.6.0/base/source.ts";
+import type { GatherArguments } from "https://deno.land/x/ddu_vim@v3.8.1/base/source.ts";
 import type { ActionData as FileActionData } from "https://deno.land/x/ddu_kind_file@v0.7.1/file.ts";
 import type {
   Actions,
   DduItem,
   Item,
-} from "https://deno.land/x/ddu_vim@v3.6.0/types.ts";
+} from "https://deno.land/x/ddu_vim@v3.8.1/types.ts";
 
 import {
   ActionFlags,
   BaseSource,
-} from "https://deno.land/x/ddu_vim@v3.6.0/types.ts";
-import { Denops, fn } from "https://deno.land/x/ddu_vim@v3.6.0/deps.ts";
-import { join } from "https://deno.land/std@0.206.0/path/mod.ts";
+} from "https://deno.land/x/ddu_vim@v3.8.1/types.ts";
+import { Denops, fn } from "https://deno.land/x/ddu_vim@v3.8.1/deps.ts";
+import { join } from "https://deno.land/std@0.208.0/path/mod.ts";
 import { echoerr, pipe } from "../ddu-source-lazy_nvim/message.ts";
 
 type ActionData = FileActionData & LazyPlugin;

@@ -11,7 +11,7 @@ import {
   BaseSource,
 } from "https://deno.land/x/ddu_vim@v3.8.1/types.ts";
 import { Denops, fn } from "https://deno.land/x/ddu_vim@v3.8.1/deps.ts";
-import { join } from "https://deno.land/std@0.208.0/path/mod.ts";
+import { join } from "https://deno.land/std@0.209.0/path/mod.ts";
 import { echomsg } from "https://denopkg.com/kyoh86/denops_util@v0.0.1/echomsg.ts";
 import { pipe } from "https://denopkg.com/kyoh86/denops_util@v0.0.1/pipe.ts";
 

@@ -65,15 +65,21 @@ Source Params ~
 Actions ~
 
 
-                                      *ddu-kind-lazy_nvim_plugin-actions-grep*
-grep
+			      *ddu-kind-lazy_nvim_plugin-actions-grep_config*
+grep_config
 
 	Grep the plugin configuration from your |standard-path|.
+
+                                      *ddu-kind-lazy_nvim_plugin-actions-clone*
+clone
+	(Depends on GitHub CLI (gh))
+	Fork the repository and clone into your "config.dev" directory of the
+	lazy.nvim.
 
                                       *ddu-kind-lazy_nvim_plugin-actions-fork*
 fork
 	(Depends on GitHub CLI (gh))
-	Fork the repository into your "config.dev" directory of the lazy.nvim.
+	Fork the repository.
 
                                      *ddu-kind-lazy_nvim_plugin-action-browse*
 browse

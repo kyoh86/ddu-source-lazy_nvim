@@ -54,22 +54,16 @@ async function fork(denops: Denops, items: DduItem[], clone: boolean) {
       act.name,
     );
 
-    try {
-      // call gh repo fork
-      await pipe(denops, "gh", { args: ["repo", "fork", act.url] });
-    } catch {
-      echomsg(denops, "failed to call gh fork", "ErrorMsg");
+    const args = ["repo", "fork", act.url];
+    if (clone) {
+      args.push("--clone", "--", devdir);
     }
 
-    if (clone) {
-      try {
-        // call gh repo clone
-        await pipe(denops, "gh", {
-          args: ["repo", "clone", act.url, "--", devdir],
-        });
-      } catch {
-        echomsg(denops, "failed to call gh clone", "ErrorMsg");
-      }
+    try {
+      // call gh repo fork
+      await pipe(denops, "gh", { args: args });
+    } catch {
+      echomsg(denops, "failed to call gh fork", "ErrorMsg");
     }
   }
   return ActionFlags.None;

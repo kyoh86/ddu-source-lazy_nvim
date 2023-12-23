@@ -81,6 +81,12 @@ browse
 	|ddu-kind-url-param-externalOpener| is used to detect the method to
 	open external browser.
 
+                                       *ddu-kind-lazy_nvim_plugin-action-help*
+help
+	It calls `:help <plugin-name>.txt` and show help for the plugin.
+	If the name has prefix and suffix like "vim-", ".vim" or ".nvim", it
+	will be trimmed.
+
 And also lazy_nvim_plugin uses |ddu-kind-file| actions.
 You can see their actions in |ddu-kind-file-actions|.
 

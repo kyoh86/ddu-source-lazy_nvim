@@ -119,6 +119,25 @@ export class Source extends BaseSource<Params, ActionData> {
     fork: async ({ denops, items }) => {
       return await clone(denops, items, true);
     },
+
+    help: async ({ denops, items }) => {
+      const item = await ensureOnlyOneItem(denops, items);
+      if (!item) {
+        return ActionFlags.Persist;
+      }
+      const name = (item.action as ActionData).name.replace(
+        /^vim-|\.n?vim$/,
+        "",
+      );
+      await denops.cmd(`help ${name}.txt`).catch((reason) => {
+        if (/[EW]\d+: .+$/.test(reason.toString())) {
+          console.error(reason.toString().replace(/^.*([EW]\d+: )/, "$1"));
+        } else {
+          console.error(reason);
+        }
+      });
+      return ActionFlags.None;
+    },
   } as Actions<Params>;
 
   override params(): Params {

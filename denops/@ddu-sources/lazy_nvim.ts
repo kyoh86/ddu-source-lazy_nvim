@@ -39,7 +39,7 @@ async function ensureOnlyOneItem(denops: Denops, items: DduItem[]) {
   return items[0];
 }
 
-async function clone(denops: Denops, items: DduItem[], fork: boolean) {
+async function fork(denops: Denops, items: DduItem[], clone: boolean) {
   for await (const item of items) {
     const act = item.action as ActionData;
 
@@ -61,7 +61,7 @@ async function clone(denops: Denops, items: DduItem[], fork: boolean) {
       echomsg(denops, "failed to call gh fork", "ErrorMsg");
     }
 
-    if (fork) {
+    if (clone) {
       try {
         // call gh repo clone
         await pipe(denops, "gh", {
@@ -113,11 +113,11 @@ export class Source extends BaseSource<Params, ActionData> {
     },
 
     clone: async ({ denops, items }) => {
-      return await clone(denops, items, false);
+      return await fork(denops, items, true);
     },
 
     fork: async ({ denops, items }) => {
-      return await clone(denops, items, true);
+      return await fork(denops, items, false);
     },
 
     help: async ({ denops, items }) => {

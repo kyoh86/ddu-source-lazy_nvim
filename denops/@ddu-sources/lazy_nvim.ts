@@ -12,8 +12,8 @@ import {
 } from "https://deno.land/x/ddu_vim@v3.9.0/types.ts";
 import { Denops, fn } from "https://deno.land/x/ddu_vim@v3.9.0/deps.ts";
 import { join } from "https://deno.land/std@0.210.0/path/mod.ts";
-import { echomsg } from "https://denopkg.com/kyoh86/denops_util@v0.0.1/echomsg.ts";
-import { pipe } from "https://denopkg.com/kyoh86/denops_util@v0.0.1/pipe.ts";
+import { echomsg } from "https://denopkg.com/kyoh86/denops_util@v0.0.3/echomsg.ts";
+import { echoallCommand } from "https://denopkg.com/kyoh86/denops_util@v0.0.3/command.ts";
 
 type ActionData = FileActionData & LazyPlugin;
 
@@ -61,7 +61,7 @@ async function fork(denops: Denops, items: DduItem[], clone: boolean) {
 
     try {
       // call gh repo fork
-      await pipe(denops, "gh", { args: args });
+      await echoallCommand(denops, "gh", { args: args });
     } catch {
       echomsg(denops, "failed to call gh fork", "ErrorMsg");
     }

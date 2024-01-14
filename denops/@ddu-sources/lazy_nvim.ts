@@ -11,9 +11,9 @@ import {
   BaseSource,
 } from "https://deno.land/x/ddu_vim@v3.9.0/types.ts";
 import { Denops, fn } from "https://deno.land/x/ddu_vim@v3.9.0/deps.ts";
-import { join } from "https://deno.land/std@0.211.0/path/mod.ts";
-import { echomsg } from "https://denopkg.com/kyoh86/denops-util@v0.0.3/echomsg.ts";
-import { echoallCommand } from "https://denopkg.com/kyoh86/denops-util@v0.0.3/command.ts";
+import { join } from "https://deno.land/std@0.212.0/path/mod.ts";
+import { echomsg } from "https://denopkg.com/kyoh86/denops-util@v0.0.5/echomsg.ts";
+import { echoallCommand } from "https://denopkg.com/kyoh86/denops-util@v0.0.5/command.ts";
 
 type ActionData = FileActionData & LazyPlugin;
 

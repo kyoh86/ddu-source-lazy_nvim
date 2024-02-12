@@ -83,9 +83,11 @@ fork
 
                                      *ddu-kind-lazy_nvim_plugin-action-browse*
 browse
-	Browse the URLs using external browser.
-	|ddu-kind-url-param-externalOpener| is used to detect the method to
-	open external browser.
+	Open the issue/pull-request in your browser.
+	Parameters:
+		opener
+			An external command name to open it.
+			e.g. "xdg-open", "wslview", etc.
 
                                        *ddu-kind-lazy_nvim_plugin-action-help*
 help

@@ -11,9 +11,7 @@ import {
   BaseSource,
 } from "https://deno.land/x/ddu_vim@v3.10.3/types.ts";
 import { Denops, fn } from "https://deno.land/x/ddu_vim@v3.10.3/deps.ts";
-import { join } from "https://deno.land/std@0.221.0/path/mod.ts";
 import { echomsg } from "https://denopkg.com/kyoh86/denops-util@v0.0.7/echomsg.ts";
-import { echoallCommand } from "https://denopkg.com/kyoh86/denops-util@v0.0.7/command.ts";
 import {
   ensure,
   is,

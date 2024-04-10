@@ -14,6 +14,11 @@ import { Denops, fn } from "https://deno.land/x/ddu_vim@v3.10.3/deps.ts";
 import { join } from "https://deno.land/std@0.221.0/path/mod.ts";
 import { echomsg } from "https://denopkg.com/kyoh86/denops-util@v0.0.7/echomsg.ts";
 import { echoallCommand } from "https://denopkg.com/kyoh86/denops-util@v0.0.7/command.ts";
+import {
+  ensure,
+  is,
+  maybe,
+} from "https://deno.land/x/unknownutil@v3.17.2/mod.ts";
 
 type ActionData = FileActionData & LazyPlugin;
 
@@ -40,37 +45,20 @@ async function ensureOnlyOneItem(denops: Denops, items: DduItem[]) {
 }
 
 async function fork(denops: Denops, items: DduItem[], clone: boolean) {
-  for await (const item of items) {
-    const act = item.action as ActionData;
-
-    if (!act.url) {
-      await echomsg(denops, "invalid item: having no URL", "ErrorMsg");
-      return ActionFlags.RestoreCursor;
-    }
-
-    // get the path of lazy.nvim dev directory
-    const devdir = join(
-      await fn.call(denops, "ddu#sources#lazy_nvim#devdir", []) as string,
-      act.name,
-    );
-
-    const args = ["repo", "fork", act.url];
-    if (clone) {
-      args.push("--clone", "--", devdir);
-    }
-
-    try {
-      // call gh repo fork
-      await echoallCommand(denops, "gh", { args: args });
-    } catch {
-      echomsg(denops, "failed to call gh fork", "ErrorMsg");
-    }
-  }
+  await denops.call(
+    "denops#notify",
+    "ddu-kind-lazy_nvim_plugin",
+    "fork",
+    [
+      items.map((item) => item.action as ActionData),
+      clone,
+    ],
+  );
   return ActionFlags.None;
 }
 
 export class Source extends BaseSource<Params, ActionData> {
-  override kind = "lazy_nvim_plugin";
+  override kind = "file";
 
   override gather(
     args: GatherArguments<Params>,
@@ -91,6 +79,24 @@ export class Source extends BaseSource<Params, ActionData> {
   }
 
   override actions = {
+    browse: async (
+      { denops, items, actionParams },
+    ) => {
+      const params = ensure(actionParams, is.Record);
+      const opener = maybe(params.opener, is.String);
+      const targets = items.map((item) => item?.action as ActionData);
+      await denops.call(
+        "denops#notify",
+        "ddu-kind-lazy_nvim_plugin",
+        "open",
+        [
+          targets,
+          opener,
+        ],
+      );
+      return ActionFlags.None;
+    },
+
     grep_config: async ({ denops, items }) => {
       const item = await ensureOnlyOneItem(denops, items);
       if (!item) {

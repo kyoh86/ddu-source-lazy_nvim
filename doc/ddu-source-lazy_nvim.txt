@@ -14,8 +14,7 @@ Introduction				|ddu-source-lazy_nvim-introdution|
 Install					|ddu-source-lazy_nvim-install|
 Examples				|ddu-source-lazy_nvim-examples|
 Source Params				|ddu-source-lazy_nvim-params|
-Actions					|ddu-kind-lazy_nvim_plugin-actions|
-Kind Params				|ddu-kind-lazy_nvim_plugin-params|
+Actions					|ddu-source-lazy_nvim_plugin-actions|
 About					|ddu-source-lazy_nvim-about|
 
 
@@ -25,9 +24,7 @@ Introduction ~
 
 ddu.vim source collects plugins managed in lazy.nvim.
 
-This source generates items for a kind "lazy_nvim_plugin".
-A handler for the kind "git_commit" is included in this plugin; see 
-|ddu-kind-git_commit|.
+This source generates items for a kind "file"; see |ddu-kind-file|.
 
 
 ==============================================================================
@@ -51,7 +48,7 @@ Examples ~
 	" Use lazy.nvim plugins source.
 	call ddu#start({
 	    \ 'sources': [{ 'name': 'lazy_nvim' }],
-	    \ 'kindOptions': { 'lazy_nvim_plugin': { 'defaultAction': 'cd' } }
+	    \ 'kindOptions': { 'file': { 'defaultAction': 'cd' } }
 	    \ })
 <
 
@@ -97,23 +94,6 @@ help
 
 And also lazy_nvim_plugin uses |ddu-kind-file| actions.
 You can see their actions in |ddu-kind-file-actions|.
-
-
-==============================================================================
-                                            *ddu-kind-lazy_nvim_plugin-params*
-Kind Params ~
-
-                              *ddu-kind-lazy_nvim_plugin-param-externalOpener*
-externalOpener	|String| (default: "systemopen")
-	The method to use external browser in "browse" action.
-	(see: |ddu-kind-lazy_nvim_plugin-action-browse|)
-	Following values are available:
-
-	value		description~
-	"openbrowser"	Use |openbrowser| plugin.
-	"external"	Use |vim-external| plugin.
-	"systemopen"	Use https://deno.land/x/systemopen@v0.2.0
-	"uiopen"	Use |vim.ui.open()| (Neovim only)
 
 
 ==============================================================================

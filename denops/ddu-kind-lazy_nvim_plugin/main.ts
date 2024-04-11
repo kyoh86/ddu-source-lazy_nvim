@@ -5,7 +5,7 @@ import {
   is,
   maybe,
 } from "https://deno.land/x/unknownutil@v3.17.2/mod.ts";
-import { join } from "https://deno.land/std@0.221.0/path/mod.ts";
+import { join } from "https://deno.land/std@0.222.0/path/mod.ts";
 import { systemopen } from "https://deno.land/x/systemopen@v1.0.0/mod.ts";
 import { echomsg } from "https://denopkg.com/kyoh86/denops-util@v0.0.7/echomsg.ts";
 import { echoallCommand } from "https://denopkg.com/kyoh86/denops-util@v0.0.7/command.ts";

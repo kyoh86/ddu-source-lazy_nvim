@@ -4,7 +4,7 @@ import {
   ensure,
   is,
   maybe,
-} from "https://deno.land/x/unknownutil@v3.17.2/mod.ts";
+} from "https://deno.land/x/unknownutil@v3.17.3/mod.ts";
 import { join } from "https://deno.land/std@0.222.1/path/mod.ts";
 import { systemopen } from "https://deno.land/x/systemopen@v1.0.0/mod.ts";
 import { echomsg } from "https://denopkg.com/kyoh86/denops-util@v0.0.7/echomsg.ts";

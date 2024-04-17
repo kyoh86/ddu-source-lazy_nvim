@@ -4,11 +4,11 @@ import {
   ensure,
   is,
   maybe,
-} from "https://deno.land/x/unknownutil@v3.17.3/mod.ts";
-import { join } from "https://deno.land/std@0.222.1/path/mod.ts";
+} from "https://deno.land/x/unknownutil@v3.18.0/mod.ts";
+import { join } from "https://deno.land/std@0.223.0/path/mod.ts";
 import { systemopen } from "https://deno.land/x/systemopen@v1.0.0/mod.ts";
-import { echomsg } from "https://denopkg.com/kyoh86/denops-util@v0.0.7/echomsg.ts";
-import { echoallCommand } from "https://denopkg.com/kyoh86/denops-util@v0.0.7/command.ts";
+import { echomsg } from "https://denopkg.com/kyoh86/denops-util@v0.0.10/echomsg.ts";
+import { echoallCommand } from "https://denopkg.com/kyoh86/denops-util@v0.0.10/command.ts";
 
 export function main(denops: Denops) {
   denops.dispatcher = {

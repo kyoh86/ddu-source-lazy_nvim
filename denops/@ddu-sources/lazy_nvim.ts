@@ -11,7 +11,7 @@ import {
   BaseSource,
 } from "https://deno.land/x/ddu_vim@v4.0.0/types.ts";
 import { Denops, fn } from "https://deno.land/x/ddu_vim@v4.0.0/deps.ts";
-import { echomsg } from "https://denopkg.com/kyoh86/denops-util@v0.0.10/echomsg.ts";
+import { echomsg } from "https://denopkg.com/kyoh86/denops-util@v0.0.11/echomsg.ts";
 import {
   ensure,
   is,

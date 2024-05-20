@@ -1,22 +1,20 @@
-import type { GatherArguments } from "https://deno.land/x/ddu_vim@v4.0.0/base/source.ts";
+import type { GatherArguments } from "https://deno.land/x/ddu_vim@v4.1.0/base/source.ts";
 import type { ActionData as FileActionData } from "https://deno.land/x/ddu_kind_file@v0.7.1/file.ts";
-import type {
-  Actions,
-  DduItem,
-  Item,
-} from "https://deno.land/x/ddu_vim@v4.0.0/types.ts";
-
 import {
   ActionFlags,
+  type Actions,
   BaseSource,
-} from "https://deno.land/x/ddu_vim@v4.0.0/types.ts";
-import { Denops, fn } from "https://deno.land/x/ddu_vim@v4.0.0/deps.ts";
-import { echomsg } from "https://denopkg.com/kyoh86/denops-util@v0.0.10/echomsg.ts";
+  type DduItem,
+  type Item,
+} from "https://deno.land/x/ddu_vim@v4.1.0/types.ts";
+
+import { Denops, fn } from "https://deno.land/x/ddu_vim@v4.1.0/deps.ts";
+import { echomsg } from "https://denopkg.com/kyoh86/denops-util@master/echomsg.ts";
 import {
   ensure,
   is,
   maybe,
-} from "https://deno.land/x/unknownutil@v3.18.0/mod.ts";
+} from "https://deno.land/x/unknownutil@v3.18.1/mod.ts";
 
 type ActionData = FileActionData & LazyPlugin;
 

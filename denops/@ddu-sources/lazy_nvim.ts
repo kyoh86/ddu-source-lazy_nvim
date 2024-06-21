@@ -1,4 +1,4 @@
-import type { GatherArguments } from "https://deno.land/x/ddu_vim@v4.1.0/base/source.ts";
+import type { GatherArguments } from "https://deno.land/x/ddu_vim@v4.1.1/base/source.ts";
 import type { ActionData as FileActionData } from "https://deno.land/x/ddu_kind_file@v0.7.1/file.ts";
 import {
   ActionFlags,
@@ -6,9 +6,9 @@ import {
   BaseSource,
   type DduItem,
   type Item,
-} from "https://deno.land/x/ddu_vim@v4.1.0/types.ts";
+} from "https://deno.land/x/ddu_vim@v4.1.1/types.ts";
 
-import { Denops, fn } from "https://deno.land/x/ddu_vim@v4.1.0/deps.ts";
+import { Denops, fn } from "https://deno.land/x/ddu_vim@v4.1.1/deps.ts";
 import { echomsg } from "https://denopkg.com/kyoh86/denops-util@master/echomsg.ts";
 import {
   ensure,

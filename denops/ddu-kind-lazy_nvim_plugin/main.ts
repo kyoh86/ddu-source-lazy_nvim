@@ -1,14 +1,10 @@
-import { Denops } from "https://deno.land/x/denops_std@v6.5.1/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.5.1/function/mod.ts";
-import {
-  ensure,
-  is,
-  maybe,
-} from "https://deno.land/x/unknownutil@v3.18.1/mod.ts";
-import { join } from "https://deno.land/std@0.224.0/path/mod.ts";
-import { systemopen } from "https://deno.land/x/systemopen@v1.0.0/mod.ts";
-import { echomsg } from "https://denopkg.com/kyoh86/denops-util@master/echomsg.ts";
-import { echoallCommand } from "https://denopkg.com/kyoh86/denops-util@master/command.ts";
+import type { Denops } from "jsr:@denops/std@7.0.1";
+import * as fn from "jsr:@denops/std@7.0.1/function";
+import { ensure, is, maybe } from "jsr:@core/unknownutil@3.18.1";
+import { join } from "jsr:@std/path@1.0.2";
+import { systemopen } from "jsr:@lambdalisue/systemopen@1.0.0";
+import { echomsg } from "jsr:@kyoh86/denops-util@0.1.0/echomsg";
+import { echoallCommand } from "jsr:@kyoh86/denops-util@0.1.0/command";
 
 export function main(denops: Denops) {
   denops.dispatcher = {

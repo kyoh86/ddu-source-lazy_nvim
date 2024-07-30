@@ -1,20 +1,17 @@
-import type { GatherArguments } from "https://deno.land/x/ddu_vim@v4.1.1/base/source.ts";
-import type { ActionData as FileActionData } from "https://deno.land/x/ddu_kind_file@v0.7.1/file.ts";
+import type { GatherArguments } from "jsr:@shougo/ddu-vim@5.0.0/source";
+import type { ActionData as FileActionData } from "jsr:@shougo/ddu-kind-file@0.8.0";
 import {
   ActionFlags,
   type Actions,
   BaseSource,
   type DduItem,
   type Item,
-} from "https://deno.land/x/ddu_vim@v4.1.1/types.ts";
+} from "jsr:@shougo/ddu-vim@5.0.0/types";
 
-import { Denops, fn } from "https://deno.land/x/ddu_vim@v4.1.1/deps.ts";
-import { echomsg } from "https://denopkg.com/kyoh86/denops-util@master/echomsg.ts";
-import {
-  ensure,
-  is,
-  maybe,
-} from "https://deno.land/x/unknownutil@v3.18.1/mod.ts";
+import type { Denops } from "jsr:@denops/std@7.0.1";
+import * as fn from "jsr:@denops/std@7.0.1/function";
+import { echomsg } from "jsr:@kyoh86/denops-util@0.1.0/echomsg";
+import { ensure, is, maybe } from "jsr:@core/unknownutil@3.18.1";
 
 type ActionData = FileActionData & LazyPlugin;
 

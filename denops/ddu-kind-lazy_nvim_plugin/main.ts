@@ -1,6 +1,6 @@
 import type { Denops } from "jsr:@denops/std@~7.0.1";
 import * as fn from "jsr:@denops/std@~7.0.1/function";
-import { ensure, is, maybe } from "jsr:@core/unknownutil@~3.18.1";
+import { as, ensure, is, maybe } from "jsr:@core/unknownutil@~4.0.0";
 import { join } from "jsr:@std/path@~1.0.2";
 import { systemopen } from "jsr:@lambdalisue/systemopen@~1.0.0";
 import { echomsg } from "jsr:@kyoh86/denops-util@~0.1.0/echomsg";
@@ -13,7 +13,7 @@ export function main(denops: Denops) {
         uTargets,
         is.ArrayOf(is.ObjectOf({
           name: is.String,
-          url: is.OptionalOf(is.String),
+          url: as.Optional(is.String),
         })),
       );
       const clone = ensure(uClone, is.Boolean);
@@ -47,7 +47,7 @@ export function main(denops: Denops) {
         uTargets,
         is.ArrayOf(is.ObjectOf({
           name: is.String,
-          url: is.OptionalOf(is.String),
+          url: as.Optional(is.String),
         })),
       );
       const opener = maybe(uOpener, is.String);

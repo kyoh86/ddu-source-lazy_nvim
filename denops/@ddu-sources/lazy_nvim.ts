@@ -11,7 +11,7 @@ import {
 import type { Denops } from "jsr:@denops/std@~7.0.1";
 import * as fn from "jsr:@denops/std@~7.0.1/function";
 import { echomsg } from "jsr:@kyoh86/denops-util@~0.1.0/echomsg";
-import { ensure, is, maybe } from "jsr:@core/unknownutil@~4.0.0";
+import { ensure, is, maybe } from "jsr:@core/unknownutil@~4.1.0";
 
 type ActionData = FileActionData & LazyPlugin;
 

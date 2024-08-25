@@ -1,6 +1,6 @@
 import type { Denops } from "jsr:@denops/std@~7.0.1";
 import * as fn from "jsr:@denops/std@~7.0.1/function";
-import { as, ensure, is, maybe } from "jsr:@core/unknownutil@~4.1.0";
+import { as, ensure, is, maybe } from "jsr:@core/unknownutil@~4.3.0";
 import { join } from "jsr:@std/path@~1.0.2";
 import { systemopen } from "jsr:@lambdalisue/systemopen@~1.0.0";
 import { echomsg } from "jsr:@kyoh86/denops-util@~0.1.0/echomsg";

@@ -1,5 +1,5 @@
-import type { Denops } from "jsr:@denops/std@~7.0.1";
-import * as fn from "jsr:@denops/std@~7.0.1/function";
+import type { Denops } from "jsr:@denops/std@~7.1.0";
+import * as fn from "jsr:@denops/std@~7.1.0/function";
 import { as, ensure, is, maybe } from "jsr:@core/unknownutil@~4.3.0";
 import { join } from "jsr:@std/path@~1.0.2";
 import { systemopen } from "jsr:@lambdalisue/systemopen@~1.0.0";

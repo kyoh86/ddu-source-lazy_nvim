@@ -1,15 +1,15 @@
-import type { GatherArguments } from "jsr:@shougo/ddu-vim@~6.1.0/source";
+import type { GatherArguments } from "jsr:@shougo/ddu-vim@~6.2.0/source";
 import type { ActionData as FileActionData } from "jsr:@shougo/ddu-kind-file@~0.9.0";
 import {
   ActionFlags,
   type Actions,
   type DduItem,
   type Item,
-} from "jsr:@shougo/ddu-vim@~6.1.0/types";
-import { BaseSource } from "jsr:@shougo/ddu-vim@~6.1.0/source";
+} from "jsr:@shougo/ddu-vim@~6.2.0/types";
+import { BaseSource } from "jsr:@shougo/ddu-vim@~6.2.0/source";
 
-import type { Denops } from "jsr:@denops/std@~7.1.0";
-import * as fn from "jsr:@denops/std@~7.1.0/function";
+import type { Denops } from "jsr:@denops/std@~7.3.0";
+import * as fn from "jsr:@denops/std@~7.3.0/function";
 import { echomsg } from "jsr:@kyoh86/denops-util@~0.1.0/echomsg";
 import { ensure, is, maybe } from "jsr:@core/unknownutil@~4.3.0";
 

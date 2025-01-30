@@ -1,5 +1,22 @@
 local M = {}
 
+--- Recursively access the metatables and retrieve the owner/repo
+local function get_full_plugin_name(plugin)
+  local mt = getmetatable(plugin)
+  if mt and mt.__index then
+    local index = mt.__index
+    if type(index) == "table" then
+      for _, value in pairs(index) do
+        if type(value) == "string" and value:match(".+/.+") then
+          return value
+        end
+      end
+      return get_full_plugin_name(index)
+    end
+  end
+  return nil
+end
+
 function M.plugins_action_data()
   local plugins = {}
   for _, plugin in pairs(require("lazy.core.config").plugins) do
@@ -10,7 +27,7 @@ function M.plugins_action_data()
         path = plugin.dir,
         isDirectory = true,
         url = plugin.url,
-        spec = plugin[1],
+        spec = get_full_plugin_name(plugin) or plugin[1],
         lazy = plugin.lazy,
       },
     })

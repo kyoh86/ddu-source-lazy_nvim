@@ -1,17 +1,17 @@
-import type { GatherArguments } from "jsr:@shougo/ddu-vim@~11.1.0/source";
-import type { ActionData as FileActionData } from "jsr:@shougo/ddu-kind-file@~1.0.0";
+import type { GatherArguments } from "@shougo/ddu-vim/source";
+import type { ActionData as FileActionData } from "@shougo/ddu-kind-file";
 import {
   ActionFlags,
   type Actions,
   type DduItem,
   type Item,
-} from "jsr:@shougo/ddu-vim@~11.1.0/types";
-import { BaseSource } from "jsr:@shougo/ddu-vim@~11.1.0/source";
+} from "@shougo/ddu-vim/types";
+import { BaseSource } from "@shougo/ddu-vim/source";
 
-import type { Denops } from "jsr:@denops/std@~8.0.0";
-import * as fn from "jsr:@denops/std@~8.0.0/function";
-import { echomsg } from "jsr:@kyoh86/denops-util@~0.1.0/echomsg";
-import { ensure, is, maybe } from "jsr:@core/unknownutil@~4.3.0";
+import type { Denops } from "@denops/std";
+import * as fn from "@denops/std/function";
+import { echomsg } from "@kyoh86/denops-util/echomsg";
+import { ensure, is, maybe } from "@core/unknownutil";
 
 type ActionData = FileActionData & LazyPlugin;
 

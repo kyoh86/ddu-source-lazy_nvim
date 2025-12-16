@@ -1,10 +1,10 @@
-import type { Denops } from "jsr:@denops/std@~8.0.0";
-import * as fn from "jsr:@denops/std@~8.0.0/function";
-import { as, ensure, is, maybe } from "jsr:@core/unknownutil@~4.3.0";
-import { join } from "jsr:@std/path@~1.1.0";
-import { systemopen } from "jsr:@lambdalisue/systemopen@~1.0.0";
-import { echomsg } from "jsr:@kyoh86/denops-util@~0.1.0/echomsg";
-import { echoallCommand } from "jsr:@kyoh86/denops-util@~0.1.0/command";
+import type { Denops } from "@denops/std";
+import * as fn from "@denops/std/function";
+import { as, ensure, is, maybe } from "@core/unknownutil";
+import { join } from "@std/path";
+import { systemopen } from "@lambdalisue/systemopen";
+import { echomsg } from "@kyoh86/denops-util/echomsg";
+import { echoallCommand } from "@kyoh86/denops-util/command";
 
 export function main(denops: Denops) {
   denops.dispatcher = {
